@@ -1,0 +1,84 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.containerFull{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:50vh;
+    background: url('/img/photo-1510915361894-db8b60106cb1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+    padding-right: 20px;
+    color: #fff;
+}
+h2{
+    color: black;
+}
+#form
+{
+    position: relative;
+    width: 500px;
+    max-width: 100%;
+}
+#form input {
+    border:0;
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 15px 30px;
+    width: 100%;
+}
+#form button{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #e056fd;
+    border:0;
+    border-radius: 50px;
+    color:#fff;
+    font-size: 16px;
+    padding: 13px 30px;
+}
+.containerResults{
+    margin: 30px auto;
+    max-width: 100%;
+    width: 700px;
+    font-size: 1.2rem;
+}
+ul.songs{
+    list-style-type:none;
+    padding:0;
+}
+ul.songs li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.btn{
+    background-color: #8d56fd;
+    border:0;
+    border-radius: 10px;
+    color: #fff;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+}
+.centered button{
+    transform: scale(1.3);
+    margin: 15px;
+}
+.nextBtn
+{
+    opacity: 0;
+}
