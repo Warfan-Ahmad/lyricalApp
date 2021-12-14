@@ -9,32 +9,52 @@ const nextBtn = document.querySelector('.nextBtn');
 submitBtn.addEventListener('click',function(e)
 {
     e.preventDefault();
+    if(inputBox.value == "")
+    {
+        alert("Please Enter song or Artist name"); 
+    }
     const query = inputBox.value;
     getDataFromApi(query);
 
 });
 
-function getLyrics(artist,title)
+async function getLyrics(artist,title)
 {
+    try{
+        const dataRecieved = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+        const json = await dataRecieved.json();
+        const data = json
 
-        const dataRecieved = fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`).then((res) => {
-            return res.json();
-        }).then((data)=> 
+        console.log(data)
+
+        if(data.lyrics)
         {
             containerSongs.innerHTML = `<h3>${artist} ${title}</h3>`
             const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
             containerSongs.innerHTML += lyrics;
-        });
+        }
+        if(data.error)
+            {alert(data.error)}
+
+        }catch(error)
+            {
+                alert(error); 
+            }
 }
 
 const getDataFromApi = async function(query){
+    try{
+
         const dataRecieved = await fetch(`https://api.lyrics.ovh/suggest/${query}`);
 
         const trasformedData = await dataRecieved.json();
         const {data} = trasformedData;
-        
-        console.log(data);
         containerSongs.innerHTML = " "
+        
+        if(data.length == 0)
+        {
+            containerSongs.innerHTML += "No Songs Available"
+        }
         
         for(i=0;i<data.length;i++)
         {
@@ -43,4 +63,9 @@ const getDataFromApi = async function(query){
                 <button class="btn" onclick = "getLyrics('${data[i].artist.name}','${data[i].title}')">Get Lyrics</button>
             </li>`
         }
+    }catch(error)
+    {
+        console.log(error);
+        containerSongs.innerHTML = error
+    }
 }
