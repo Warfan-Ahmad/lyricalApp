@@ -13,8 +13,10 @@ submitBtn.addEventListener('click',function(e)
     {
         alert("Please Enter song or Artist name"); 
     }
-    const query = inputBox.value;
-    getDataFromApi(query);
+    else{
+        const query = inputBox.value;
+        getDataFromApi(query);
+    }
 
 });
 
